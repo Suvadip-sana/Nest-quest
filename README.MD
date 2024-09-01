@@ -109,6 +109,10 @@ The following dependencies are used in this project:
 
 ```
 nestquest/
+├── controllers/
+│   ├── listings.js
+│   ├── reviews.js
+│   ├── users.js
 ├── models/
 │   ├── listing.js
 │   ├── review.js
@@ -122,10 +126,10 @@ nestquest/
 │   ├── listings.js
 │   ├── reviews.js
 ├── views/
-│   ├── partials/
+│   ├── includes/
+│   ├── layouts/
 │   ├── listings/
 │   ├── reviews/
-│   ├── users/
 ├── app.js
 ├── .env
 ├── package.json
