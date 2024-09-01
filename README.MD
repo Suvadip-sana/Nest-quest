@@ -110,18 +110,30 @@ The following dependencies are used in this project:
 
 ## Folder Structure
 
+\```
 nestquest/
-│
-├── public/             # Static files (CSS, JavaScript, images)
-├── routes/             # Express routes for handling requests
-├── views/              # EJS templates for rendering UI
-├── models/             # Mongoose models for MongoDB collections
-├── middleware/         # Custom middleware functions
-├── .env                # Environment variables
-├── app.js              # Main application file
-├── package.json        # NPM dependencies and scripts
-└── README.md           # Project documentation
-
+├── models/
+│   ├── listing.js
+│   ├── review.js
+│   ├── user.js
+├── public/
+│   ├── css/
+│   ├── images/
+│   ├── js/
+├── routes/
+│   ├── index.js
+│   ├── listings.js
+│   ├── reviews.js
+├── views/
+│   ├── partials/
+│   ├── listings/
+│   ├── reviews/
+│   ├── users/
+├── app.js
+├── .env
+├── package.json
+└── README.md
+\```
 ## Contributing
 
 Contributions are welcome! Feel free to submit a Pull Request or open an Issue to discuss what you would like to change.
