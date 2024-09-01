@@ -64,6 +64,7 @@ The following dependencies are used in this project:
   "passport-local-mongoose": "^8.0.0"
 
 }
+```
 
 ## Installation
 
