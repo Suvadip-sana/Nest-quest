@@ -1,6 +1,7 @@
-# NestQuest
+# Nestquest
+### Your Gateway to Unique Stays: Experience Travel Differently!
 
-NestQuest is a full-stack web application inspired by Airbnb that allows users to sign up, log in, and explore unique accommodations worldwide. Users can list their properties, add reviews, and view precise locations on a map. The platform is built using modern web technologies like Node.js, Express.js, MongoDB, and integrates with Cloudinary for image storage and Mapbox for map functionality.
+Nestquest is a full-stack web application inspired by Airbnb that allows users to sign up, log in, and explore unique accommodations worldwide. Users can list their properties, add reviews, and view precise locations on a map. The platform is built using modern web technologies like Node.js, Express.js, MongoDB, and integrates with Cloudinary for image storage and Mapbox for map functionality.
 
 ## Table of Contents
 
@@ -34,10 +35,6 @@ Check out the live demo: [NestQuest Demo](https://nestquest-4ik5.onrender.com/)
 - **Cloud Storage**: Cloudinary
 - **Map Integration**: Mapbox SDK
 - **Authentication**: Passport.js
-
-## Dependencies
-
-The following dependencies are used in this project:
 
 ## Dependencies
 
