@@ -93,7 +93,7 @@ The following dependencies are used in this project:
     ```
 
 5. **Visit the app**
-   Open your browser and go to `http://localhost:3000`.
+   Open your browser and go to `http://localhost:<port number>`.
 
 
 ## Usage
