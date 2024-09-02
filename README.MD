@@ -143,4 +143,4 @@ Contributions are welcome! Feel free to submit a Pull Request or open an Issue t
 
 ## Creators
 
-- **Suvadip Sana** - *Full Stack Developer* - [GitHub](https://github.com/Suvadip-sana)
+- **Suvadip Sana** - *Full Stack Developer* - [Linked IN](https://www.linkedin.com/in/suvadip-sana-b07a14243/)
