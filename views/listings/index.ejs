@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+        
+            <h3 class="index-heading d-flex justify-content-center mt-3 flex-xs-wrap fs-1 fs-md-2 fs-sm-3 fs-xs-4"><img src="/images/heading.png" alt="calligraphy-fonts" border="0"></h3> 
+            <span class="d-flex justify-content-center mb-5">Experience Travel Differently!</span>
+        
+        
+
+        <div class="row row-col-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 gridify">
+            <% for(let list of allList) {%>
+                <a href="/listings/<%= list._id %>" class="card-link">
+
+                    <div class="card listing-card col" >
+
+                        <% if (list.image && list.image.length > 0) { %>
+                            <img src="<%= list.image[0].url %>" class="card-img-top" alt="listing_image" style="height: 19rem;"/>
+                        <% } %>  
+
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center">Click for view more.</div>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                <span class="bold1">
+                                    <%= list.title.length > 35 ? list.title.substring(0, 30) + "...." : list.title %>
+                                </span> <br>
+                                <span class="opacity">
+                                    <%= list.location %>, &nbsp; <%= list.country %>
+                                </span> <br> 
+                                &#8377;<%= list.price ? list.price.toLocaleString("en-IN") : "N/A" %> &nbsp; <span class="dim">night</span>
+                            </p>
+                        </div>
+
+                    </div>
+
+                </a>
+
+                <% } %>
+        </div>
+
+
+
+
+
+
+    </body>

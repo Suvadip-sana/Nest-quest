@@ -1,0 +1,389 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+
+        <script>
+            const mapToken = "<%= process.env.MAP_TOKEN %>"; // Store environmental variable in a new variable to Make this environment variable accessable in public folder(map.js file) inside a script tag at the starting of this file
+            const listing = <%- JSON.stringify(data) %>; // Store environmental variable in a new variable to Make this environment variable accessable in public folder(map.js file) inside a script tag at the starting of this file
+        </script>
+
+        <div class="row mb-5">
+            <!-- <div class="col-6 row-cols-md-8 offset-3 row-cols-xs-8"> -->
+            <div class="col col-lg-10 col-md-10 col-sm-10 cols-xs-10 offset-lg-1 offset-md-1 offset-sm-1">
+
+                <h4 class="mt-4 mb-4 heading">
+                    <%= data.title %>
+                </h4>
+
+                <div class="card listing-card">
+                    <!-- Carousel for images -->
+                    <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <% for (let i = 0; i < data.image.length; i++) { %>
+                                <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                                    <img src="<%= data.image[i].url %>" class="show-img" alt="Image of <%= data.title %>">
+                                </div>
+                            <% } %>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-text mt-2">
+                            <h5 class="about">About the space</h5>
+                            <span class="mt-1 opacity">
+                                <%= data.description %>
+                            </span> <br>
+                        <p class="location bold2 mt-2">
+                            <%= data.location %>, &nbsp; <%= data.country %>
+                        </p>
+                        &#8377;<%= data.price ? data.price.toLocaleString("en-IN") : "N/A" %> &nbsp;<span class="dim">night</span>
+                        </p>
+                        <hr>
+                        <p class="heading2"><img src="/images/user3.png" alt="" class="user1">&nbsp;&nbsp;&nbsp;<%= data.owner.username %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <% if(data.submitedAt) {%>
+                            <small class="review-date">
+                                <%= new Date(data.submitedAt).toLocaleDateString("en-IN", {
+                                    weekday: "short",
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric"
+                                }) %>
+                            </small>
+                        <% } %>
+                        </p>
+                        <!-- <hr> -->
+
+                    </div>
+
+
+                    <% if(currUser && currUser._id.equals(data.owner._id))  {%> <!--If the both (listing ownerId & currentuserId that was saved by locals using req.user are same, display the edit & delete button, else hide them)-->
+                        <hr class="mt-0">
+                    <div class="btns mb-3">
+
+                        <a href="/listings/<%= data._id %>/edit" class="btn btn-danger ">Edit</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header text-danger">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete this List?</h1>
+                                        <button type="button" class="btn-close text-danger" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this listing? This action cannot be undone. Once
+                                        deleted, the listing will be permanently removed from the system.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <!-- <button type="button" class="btn btn-primary">Delete</button> -->
+                                        <form action="/listings/<%= data._id %>?_method=DELETE" method="post">
+                                            <button class="btn btn-dark">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- <hr> -->
+
+
+                    <% } %>
+
+
+                <!-- check if the currUser is define then check if the user is already add one review for this listing. If added then not allow to add more-->
+                    
+                    <% if(currUser && !userHasReviewed) { %> <!-- Check if the user is logged in and has not yet reviewed the listing. If not, allow them to leave a review -->
+
+
+                    <!-- Review form -->
+                    <hr class="mt-0">
+                    <p>
+                        <button class="btn btn-outline-danger btn-sm mt-0" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseWidthExample" aria-expanded="false"
+                            aria-controls="collapseWidthExample">
+                            Leave a review
+                        </button>
+                    </p>
+
+                    <div>
+                        <div class="collapse" id="collapseWidthExample">
+                            <div
+                                class="card listing-card card-body col-lg-7 col-md-8 col-sm-10 cols-xs-10 offset-lg-3 offset-md-2 offset-sm-1">
+
+                                <!-- Form for add reviews. -->
+                                <form action="/listings/<%= data._id %>/reviews" method="post" novalidate
+                                    class="needs-validation">
+
+                                    <div>
+                                        <label for="rating" class="form-label bold2">Rating:</label>
+                                        <fieldset class="starability-growRotate">
+                                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="3" checked aria-label="No rating." />
+                                            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                            <label for="first-rate1" title="Terrible">1 star</label>
+                                            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                            <label for="first-rate2" title="Not good">2 stars</label>
+                                            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                            <label for="first-rate3" title="Average">3 stars</label>
+                                            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                            <label for="first-rate4" title="Very good">4 stars</label>
+                                            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                            <label for="first-rate5" title="Amazing">5 stars</label>
+                                        </fieldset>
+                                      </div>
+
+
+
+
+
+                                    <div>
+                                        <label for="comment" class="form-label bold2">Comments:</label>
+                                        <textarea name="review[comment]"
+                                            class="form-control focus-ring focus-ring-secondary border rounded-1"
+                                            id="comments" placeholder="Add some commens..." rows="4" required></textarea>
+                                            <small class="form-text" id="errorReview">Maximum 700 charecters!</small>
+                                        <div class="invalid-feedback">Please add comments before submit!</div>
+                                    </div>
+
+                                    <button class="btn btn-outline-secondary btn-sm mt-4">Submit</button>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <hr> -->
+
+                    <% } %>
+
+                    
+
+                    <!-- <h4 class="mt-4 mb-3"><i class="fa-solid fa-star"></i> Reviews</h4> -->
+
+                    <div class="row review-section">
+
+
+                        <!-- Check if there is review inside reviews. If no review there then print 'no review' -->
+                        <% if(data.reviews.length == 0) {%>
+                            <div>
+                                <hr id="no-review">
+                                <h5 class="no-review"><i class="fa-solid fa-star"></i> No reviews yet</h5>
+                            </div>
+                        <% } else{ %> <!--If there is Review then display the review-->
+                            <div class="review-heading">
+                                <hr>
+                                <h5 class="mb-3"><i class="fa-solid fa-star"></i> Reviews</h5>
+                            </div>
+                            <% for (let i = 0; i < data.reviews.length; i++) { %>
+                                <% let review = data.reviews[i] %>
+                            
+                                
+                                <div class="card col-lg-5 col-sm-10 cols-xs-10 me-4 mt-4 mb-4 border-0">
+                                    <div class="card-body">
+    
+    
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="card-title"><img src="/images/user1.png" alt="" class="user2">&nbsp;&nbsp;<%= review.author.username %>&nbsp;&nbsp;&nbsp;&nbsp; 
+                                                <small class="review-date">
+                                                    <%= new Date(review.createdAt).toLocaleDateString("en-IN", {
+                                                        weekday: "short",
+                                                        year: "numeric",
+                                                        month: "short",
+                                                        day: "numeric"
+                                                    }) %>
+                                                </small>
+                                            </h6>
+
+                                            <!-- Create the review delete button with a model that have popup alert before delete -->
+                                            <% if(currUser && currUser._id.equals(review.author._id))  {%>
+                                            
+                                            <div>  
+                                                <button class="btn text-muted icon-size btn-link" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal<%= review._id %>">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+    
+    
+    
+                                                <div class="modal fade" id="exampleModal<%= review._id %>" tabindex="-1"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header text-danger">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete
+                                                                    this Review?</h1>
+                                                                <button type="button" class="btn-close text-danger"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete this review? This action
+                                                                cannot be undone. Once
+                                                                deleted, the review will be permanently removed from the
+                                                                system.
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <!-- <button type="button" class="btn btn-primary">Delete</button> -->
+                                                                <form
+                                                                    action="/listings/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                                                    method="post">
+                                                                    <button class="btn btn-dark">Delete</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+
+                                        </div>
+    
+    
+                                        <!-- Print the stars with a for loop & comment -->
+                                        <p class="card-text">
+                                            <% for (let i = 1; i <= 5; i++) { %>
+                                                <% if (i <= review.rating) { %>
+                                                    <i class="fa-solid fa-star star"></i>
+                                                <% } else { %>
+                                                    <i class="fa-regular fa-star star"></i>
+                                                <% } %>
+                                            <% } %>
+                                            <br>
+                                            <span class="text-muted">
+                                                <%= review.comment.length > 200 ? review.comment.substring(0, 190) + "...." : review.comment %>
+                                                <% if (review.comment.length > 200) { %>
+                                                    <a class="text-primary seemore" data-bs-toggle="modal" data-bs-target="#modal-<%= i %>">Read more</a>
+                                                <% } %>
+                                            </span>
+                                        </p>
+    
+    
+                                    </div>
+
+
+                                    <!-- Modal with Unique ID for Each Review -->
+                                    <div class="modal fade" id="modal-<%= i %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel-<%= i %>" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <div class="user-credential">
+                                                        <div class="d-flex justify-content-between">
+                                                            <div>
+                                                                <img id="review_logo" src="/images/user1.png" alt="Reviewer" class="reviewer-profile user3"> &nbsp;&nbsp;
+                                    
+                                                                <% if (review.author) { %>
+                                                                    <span class="u-name"><%= review.author.username %></span> <span style="font-size: 10px; opacity: 0.7;">owner</span>
+                                                                <% } else { %>
+                                                                    <span style="font-size: 10px; opacity: 0.7;">Unknown author</span>
+                                                                <% } %>
+                                                            </div>
+    
+                                                            <small class="review-date">
+                                                                <%= new Date(review.createdAt).toLocaleDateString("en-IN", {
+                                                                    weekday: "short",
+                                                                    year: "numeric",
+                                                                    month: "short",
+                                                                    day: "numeric"
+                                                                }) %>
+                                                            </small>
+                                                        </div>                                                        
+                                                    </div>
+                                                    
+
+
+                                                    <div class="model-star">
+                                                        <% for (let j = 1; j <= 5; j++) { %>
+                                                            <% if (j <= review.rating) { %>
+                                                                <i class="fa-solid fa-star star2"></i>
+                                                            <% } else { %>
+                                                                <i class="fa-regular fa-star star2"></i>
+                                                            <% } %>
+                                                        <% } %>
+                                                    </div>
+
+                                                    <!-- Display the full comment here -->
+                                                    <%= review.comment %> 
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+    
+                                </div>
+                            <% } %>
+                         
+                        <% } %>
+                    </div>
+
+                    <hr class="before-map">
+
+                </div>
+
+            </div>
+
+            <div class="map flex mb-5">
+                <h4>Where you'll be</h4>
+                <div class="" id="map">
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <script src="/js/map.js"></script> <!--Call the script file at the end because the map will be displayed at the end-->
+        <script>
+            // Track the review comment length
+            let reviewComment = document.getElementById("comments");
+            let reviewError = document.getElementById("errorReview");
+            let maxCharss = 700;
+
+            reviewComment.addEventListener("input", () => {
+            let currLength = reviewComment.value.length;
+
+            if(currLength > maxCharss){
+                reviewComment.value = reviewComment.value.substring(0, maxCharss);
+                reviewError.textContent = `You have reached the ${maxCharss} characters limit!`;
+                reviewError.classList.remove("no-error");
+                reviewError.classList.add("exceed-error");
+            }
+            else{
+                reviewError.textContent = `Maximum ${maxCharss} charecters!`;
+                reviewError.classList.remove("exceed-error");
+                reviewError.classList.add("no-error");
+            }
+            });
+        </script>
+
+    </body>

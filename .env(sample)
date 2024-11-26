@@ -1,0 +1,8 @@
+CLOUD_NAME=Your Cloud Name
+CLOUD_API_KEY=Your Cloud API Key
+CLOUD_API_SECRET=Your cloud API Secret
+MAP_TOKEN=Your Mapbox Token
+ATLASDB_URL=Mongo Atlas URL
+MONGO_PASSWORD=Mongo Atlas Cluster Password
+SECRET=Your Secrete for the Session management
+PORT=Your Port Number
