@@ -17,6 +17,14 @@
                             <img src="<%= list.image[0].url %>" class="card-img-top" alt="listing_image" style="height: 19rem;"/>
                         <% } %>  
 
+                        <!-- Heart Icon for Add to Favorites -->
+                        <button 
+                            class="fav-btn position-absolute heart" 
+                                data-id="<%= list._id %>"
+                                    onclick="toggleFavorite(event, this)">
+                                        <i class="bx bx-heart"></i>
+                        </button>
+
                         <div class="card-img-overlay d-flex justify-content-center align-items-center">Click for view more.</div>
 
                         <div class="card-body">
@@ -40,7 +48,31 @@
 
 
 
+        <script>
+            const favorites = new Set(); // Keeps track of favorited items
+        
+            function toggleFavorite(event, button) {
+                event.stopPropagation();
+                event.preventDefault();
 
+                const id = button.getAttribute('data-id'); // Get the listing ID
+                const heartIcon = button.querySelector('i');
+        
+                // Toggle favorite status
+                if (favorites.has(id)) {
+                    favorites.delete(id); // Remove from favorites
+                    heartIcon.classList.remove('bxs-heart');
+                    heartIcon.classList.add('bx-heart'); // Turn heart white
+                } else {
+                    favorites.add(id); // Add to favorites
+                    heartIcon.classList.remove('bx-heart');
+                    heartIcon.classList.add('bxs-heart'); // Turn heart red
+                }
+        
+                // console.log([...favorites]); // Debug: Show current favorites
+            }
+        </script>
+        
 
 
     </body>
