@@ -64,6 +64,7 @@ body{
 }
 .profile1{
     height: 2rem;
+    width: 2rem;
     margin-left: 1rem;
     border: 2px solid #6a6a6a;
     box-sizing: border-box;
@@ -71,6 +72,7 @@ body{
 }
 .profile2{
     height: 2rem;
+    width: 2rem;
     margin-left: 1rem;
     border: 1px solid #ff385c;
     border-radius: 50%;
@@ -189,6 +191,9 @@ footer{
 }
 .user1{
     height: 2rem;
+    width: 2rem;
+    border: 1px solid #dc3545;
+    border-radius: 50%;
 }
 .user2{
     height: 1.4rem;
