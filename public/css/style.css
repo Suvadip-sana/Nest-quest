@@ -240,6 +240,35 @@ footer{
 .form-label-listings{
     font-weight: 600;
 }
+
+.fav-btn {
+    background: none;
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 13px;
+    right: 0;
+    z-index: 10;
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fav-btn i{
+    font-size: 1.5rem;
+}
+.fav-btn i.bxs-heart {
+    color: #ff1b32 !important;
+}
+.heart{
+    padding: 0.5rem !important;
+    background-color: #8686866e;
+    backdrop-filter: blur(1px);
+    border-radius: 50%;
+}
 /* Style Show image */
 .img-fluid{
     background-size: cover !important; 
