@@ -17,7 +17,7 @@ Nestquest is a full-stack web application inspired by Airbnb that allows users t
 
 ## Demo
 
-Check out the live demo: [NestQuest Demo](https://nestquest-4ik5.onrender.com/)
+Check out the live demo: [NestQuest Demo](https://nest-quest-isga.onrender.com/)
 
 ## Features
 
@@ -84,8 +84,11 @@ The following dependencies are used in this project:
     CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
     CLOUDINARY_KEY=your_cloudinary_key
     CLOUDINARY_SECRET=your_cloudinary_secret
-    MAPBOX_TOKEN=your_mapbox_token
-    DATABASE_URL=your_mongodb_atlas_url
+    MAP_TOKEN=Your Mapbox Token
+    ATLASDB_URL=Mongo Atlas URL
+    MONGO_PASSWORD=Mongo Atlas Cluster Password
+    SECRET=Your Secrete for the Session management
+    PORT=Your Port Number
     ```
 
 4. **Run the application**
