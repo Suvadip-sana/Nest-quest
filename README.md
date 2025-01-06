@@ -151,3 +151,25 @@ Contributions are welcome! Feel free to submit a Pull Request or open an Issue t
 ## Creators
 
 - **Suvadip Sana** - *Full Stack Developer* - [Linked IN](https://www.linkedin.com/in/suvadip-sana-b07a14243/)
+
+## License 📜 
+
+This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
+
+---
+
+<div align="center">
+  <p> 
+    <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f31f/512.gif" alt="🌟" width="36" height="36" style="vertical-align:middle;">
+    <strong style="font-size:1.5rem; vertical-align:middle;">If you find this project helpful, please consider giving it a star!</strong>
+    <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f31f/512.gif" alt="🌟" width="36" height="36" style="vertical-align:middle;">
+  </p>
+</div>
+
+---
+
+<div align="center">
+    <a href="#top">
+        <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
+    </a>
+</div>
