@@ -13,7 +13,7 @@ Nestquest is a full-stack web application inspired by Airbnb that allows users t
 - [Installation](#installation)
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
+- [Contributing](CONTRIBUTING.md)
 
 ## Demo
 
@@ -21,6 +21,9 @@ Check out the live demo: [NestQuest Demo](https://nest-quest-isga.onrender.com/)
 
 ## User Manual
 - Check this for [User Manual](USERMANUAL.md)
+
+## Code of Conduct
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ## Features
 
