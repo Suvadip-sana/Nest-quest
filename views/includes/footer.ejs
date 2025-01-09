@@ -1,60 +1,15 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
-    <link rel="stylesheet" href="footer.css">  
-    <title>Footer</title>  
-</head>  
-<body>  
-    <footer class="bg-dark text-white py-4">  
-        <div class="container">  
-            <div class="row">  
-                <div class="col-md-4">  
-                    <div class="logo">  
-                        <span class="brand h4"><%= brandName || "Nestquest" %></span>  
-                        <div class="social-icons mt-2">  
-                            <a href="https://facebook.com" target="_blank" class="text-white mr-2" title="Facebook">  
-                                <img src="/images/facebook.png" alt="Facebook Icon" width="30" height="30">  
-                            </a>  
-                            <a href="https://twitter.com" target="_blank" class="text-white mr-2" title="Twitter">  
-                                <img src="/images/twitter.png" alt="Twitter Icon" width="30" height="30">  
-                            </a>  
-                            <a href="https://github.com" target="_blank" class="text-white mr-2" title="GitHub">  
-                                <img src="/images/github.png" alt="GitHub Icon" width="30" height="30">  
-                            </a>  
-                        </div>  
-                    </div>  
-                </div>  
-                <div class="col-md-8">  
-                    <div class="row">  
-                        <% const sections = [  
-                            { title: "Documentation", items: ["Getting Started", "Updates", "User Guidelines", "Community Guidelines", "System Requirements", "Refund and Cancellation Policy"] },  
-                            { title: "Resources", items: ["Customers", "Enterprise", "Request Preview", "Help & Support", "FAQs", "Blogs", "Wall of Love"] },  
-                            { title: "Company", items: ["About Us", "Careers", "Our Team", "Blog", "Public Roadmap", "Security", "Career Opportunities", "Contact Us"] },  
-                            { title: "Legal", items: ["Privacy Policy", "Terms of Service", "Copyright Notice", "Trademark Information", "Disclaimer"] }  
-                        ]; %>  
+<footer>
+    <div class="f-info">
+        <div class="f-socials">
+            <a href="https://www.facebook.com/suvadip.sana.7" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://x.com/SuvadipSana2" target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
+            <a href="https://github.com/Suvadip-sana" target="_blank"><i class="fa-brands fa-square-github"></i> </a>      
+        </div>
+        <div class="copy">&copy; 2024 Nestquest Private Ltd. <br>Designed by SUVADIP</div>
+        <div class="f-links">
+            <a href="/pricacy">Privacy</a>
+            .<a href="/terms">Terms</a>
+        </div>
+    </div>
 
-                        <% sections.forEach(section => { %>  
-                            <div class="col-md-3">  
-                                <h5><%= section.title %></h5>  
-                                <% section.items.forEach(item => { %>  
-                                    <a href="#" class="text-white d-block mb-1"><%= item %></a>  
-                                <% }) %>  
-                            </div>  
-                        <% }) %>  
-                    </div>  
-                </div>  
-            </div>  
-            <div class="text-center mt-4">  
-                <span>© <%= new Date().getFullYear() %> Nestquest Private Ltd.</span>  
-            </div>  
-        </div>  
-    </footer>  
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>  
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
-</body>  
-</html>
+</footer>
