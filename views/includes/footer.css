@@ -1,0 +1,13 @@
+body {  
+    margin: 0;  
+    font-family: Arial, sans-serif;  
+}  
+
+.social-icons {  
+    margin-top: 10px;  
+}  
+
+.social-icons img {  
+    vertical-align: middle; /* Aligns the icons with text */  
+    filter: invert(1); /* Optional: to change icon color if needed */  
+}
