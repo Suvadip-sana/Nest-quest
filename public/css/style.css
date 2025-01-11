@@ -301,6 +301,22 @@ hr{
     display: none !important;
 }
 
+#progressBarContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background: lightgray;
+    z-index: 9999;
+  }
+  #progressBar {
+    height: 100%;
+    width: 0%;
+    background: red;
+    transition: width 0.3s ease;
+  }
+  
 /* Map style */
 #map{
     min-height: 60vh;
