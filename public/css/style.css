@@ -313,8 +313,8 @@ hr{
   #progressBar {
     height: 100%;
     width: 0%;
-    background: red;
-    transition: width 0.3s ease;
+    background: #fa385b;
+    transition: width 0.1s ease;
   }
   
 /* Map style */
